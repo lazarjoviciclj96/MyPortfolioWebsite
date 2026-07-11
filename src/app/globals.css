@@ -1,0 +1,58 @@
+@import "tailwindcss";
+
+:root {
+  --background: #07090a;
+  --background-elevated: #0d1210;
+  --foreground: #e7f2ec;
+  --muted: #8fa39a;
+  --border: #1c2b22;
+  --neon: #39ff14;
+  --neon-soft: #22c55e;
+  --neon-dim: #0f2417;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-background-elevated: var(--background-elevated);
+  --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-border: var(--border);
+  --color-neon: var(--neon);
+  --color-neon-soft: var(--neon-soft);
+  --color-neon-dim: var(--neon-dim);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+* {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+}
+
+::selection {
+  background: var(--neon);
+  color: #05130a;
+}
+
+.text-glow {
+  text-shadow: 0 0 12px rgba(57, 255, 20, 0.55), 0 0 32px rgba(57, 255, 20, 0.25);
+}
+
+.border-glow {
+  box-shadow: 0 0 0 1px rgba(57, 255, 20, 0.25), 0 0 24px rgba(57, 255, 20, 0.12);
+}
+
+.scrollbar-thin::-webkit-scrollbar {
+  width: 8px;
+}
+.scrollbar-thin::-webkit-scrollbar-thumb {
+  background: var(--neon-dim);
+  border-radius: 9999px;
+}
+.scrollbar-thin::-webkit-scrollbar-track {
+  background: transparent;
+}

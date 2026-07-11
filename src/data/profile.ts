@@ -13,16 +13,17 @@ export const personal = {
 };
 
 export const hero = {
-  eyebrow: "Open to work · Remote / Hybrid / Relocation",
-  headline: "I find the bugs your users never should.",
+  eyebrow: "Open to work",
+  headline: "Bugs are expensive.",
+  headlineAccent: "I make sure you don't pay for them.",
   subheadline:
-    "QA Manual & Automation Engineer with nearly 5 years shipping reliable web and mobile releases — combining sharp exploratory testing, Playwright automation (.NET/TS/JS), and AI-augmented testing workflows that catch issues before users ever see them.",
-  primaryCta: { label: "View my work", href: "#projects" },
+    "Nearly 5 years preventing costly production incidents through sharp manual testing, Playwright automation, and AI-augmented workflows that cut testing time by ~40% - all while keeping the defect escape rate under 3%.",
+  primaryCta: { label: "View projects", href: "#projects" },
   secondaryCta: { label: "Let's talk", href: "#contact" },
   stats: [
-    { label: "Years in QA", value: "5+" },
-    { label: "Defect escape rate", value: "<3%" },
-    { label: "Faster automation authoring (AI-assisted)", value: "~40%" },
+    { label: "Years Experience", value: "5+" },
+    { label: "Defect Escape Rate", value: "<3%" },
+    { label: "Faster Automation", value: "~40%" },
   ],
 };
 

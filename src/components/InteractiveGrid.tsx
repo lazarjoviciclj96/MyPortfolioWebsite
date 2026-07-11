@@ -3,10 +3,12 @@
 import { useEffect, useRef } from "react";
 
 const GRID_SIZE = 42;
-const GLOW_RADIUS = 260;
 const BASE_LINE_COLOR = "rgba(57, 255, 20, 0.08)";
 const BASE_DOT_COLOR = "rgba(57, 255, 20, 0.16)";
-const GLOW_COLOR = "rgba(57, 255, 20, 0.5)";
+// Per-frame multiplier: how quickly an excited cell fades back to the base grid.
+const DECAY = 0.94;
+// Glow strength by Chebyshev distance from the cell under the cursor.
+const NEIGHBOR_FALLOFF = [1, 0.4, 0.1];
 
 export default function InteractiveGrid() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -24,11 +26,12 @@ export default function InteractiveGrid() {
     let width = 0;
     let height = 0;
     let dpr = Math.min(window.devicePixelRatio || 1, 2);
-
-    // Target = where the pointer actually is. Pos = smoothed, trailing value
-    // used for drawing, so the glow eases toward the cursor instead of snapping.
-    const target = { x: 0, y: 0 };
-    const pos = { x: 0, y: 0 };
+    let cols = 0;
+    let rows = 0;
+    // Per-cell glow intensity (0..1), indexed row-major.
+    let cells = new Float32Array(0);
+    let pointerCol = -1;
+    let pointerRow = -1;
     let hasPointer = false;
     let rafId = 0;
 
@@ -43,18 +46,29 @@ export default function InteractiveGrid() {
       canvas!.style.width = `${width}px`;
       canvas!.style.height = `${height}px`;
       ctx!.setTransform(dpr, 0, 0, dpr, 0, 0);
-      if (!hasPointer) {
-        target.x = width / 2;
-        target.y = height / 2;
-        pos.x = target.x;
-        pos.y = target.y;
+      cols = Math.ceil(width / GRID_SIZE);
+      rows = Math.ceil(height / GRID_SIZE);
+      cells = new Float32Array(cols * rows);
+    }
+
+    // Light up the cell under the cursor plus a soft ring of neighbors.
+    function excite(col: number, row: number) {
+      const reach = NEIGHBOR_FALLOFF.length - 1;
+      for (let dr = -reach; dr <= reach; dr++) {
+        for (let dc = -reach; dc <= reach; dc++) {
+          const c = col + dc;
+          const r = row + dr;
+          if (c < 0 || r < 0 || c >= cols || r >= rows) continue;
+          const strength = NEIGHBOR_FALLOFF[Math.max(Math.abs(dc), Math.abs(dr))];
+          const idx = r * cols + c;
+          if (cells[idx] < strength) cells[idx] = strength;
+        }
       }
     }
 
-    function draw() {
+    function drawBase() {
       ctx!.clearRect(0, 0, width, height);
 
-      // Base dim grid
       ctx!.strokeStyle = BASE_LINE_COLOR;
       ctx!.lineWidth = 1;
       ctx!.beginPath();
@@ -68,67 +82,74 @@ export default function InteractiveGrid() {
       }
       ctx!.stroke();
 
-      // Dim intersection dots
       ctx!.fillStyle = BASE_DOT_COLOR;
       for (let x = 0; x <= width; x += GRID_SIZE) {
         for (let y = 0; y <= height; y += GRID_SIZE) {
           ctx!.fillRect(x - 1, y - 1, 2, 2);
         }
       }
+    }
 
-      // Additive glow spotlight around cursor — brightens whatever grid
-      // lines/dots fall under it without needing a second geometry pass.
+    function drawGlow() {
       ctx!.globalCompositeOperation = "lighter";
-      const gradient = ctx!.createRadialGradient(
-        pos.x,
-        pos.y,
-        0,
-        pos.x,
-        pos.y,
-        GLOW_RADIUS
-      );
-      gradient.addColorStop(0, GLOW_COLOR);
-      gradient.addColorStop(1, "rgba(57, 255, 20, 0)");
-      ctx!.fillStyle = gradient;
-      ctx!.fillRect(
-        Math.max(0, pos.x - GLOW_RADIUS),
-        Math.max(0, pos.y - GLOW_RADIUS),
-        GLOW_RADIUS * 2,
-        GLOW_RADIUS * 2
-      );
+      for (let r = 0; r < rows; r++) {
+        for (let c = 0; c < cols; c++) {
+          const v = cells[r * cols + c];
+          if (v < 0.02) continue;
+          const x = c * GRID_SIZE;
+          const y = r * GRID_SIZE;
+          ctx!.fillStyle = `rgba(57, 255, 20, ${v * 0.08})`;
+          ctx!.fillRect(x, y, GRID_SIZE, GRID_SIZE);
+          ctx!.strokeStyle = `rgba(57, 255, 20, ${v * 0.6})`;
+          ctx!.strokeRect(x + 0.5, y + 0.5, GRID_SIZE, GRID_SIZE);
+        }
+      }
       ctx!.globalCompositeOperation = "source-over";
     }
 
     function loop() {
-      pos.x += (target.x - pos.x) * 0.12;
-      pos.y += (target.y - pos.y) * 0.12;
-      draw();
+      // Keep the cell under a resting cursor lit; the trail behind it fades.
+      if (hasPointer) excite(pointerCol, pointerRow);
+      for (let i = 0; i < cells.length; i++) {
+        cells[i] = cells[i] > 0.02 ? cells[i] * DECAY : 0;
+      }
+      drawBase();
+      drawGlow();
       rafId = requestAnimationFrame(loop);
     }
 
     function handlePointerMove(e: PointerEvent) {
       const rect = canvas!.getBoundingClientRect();
-      target.x = e.clientX - rect.left;
-      target.y = e.clientY - rect.top;
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      if (x < 0 || y < 0 || x >= width || y >= height) {
+        hasPointer = false;
+        return;
+      }
+      pointerCol = Math.floor(x / GRID_SIZE);
+      pointerRow = Math.floor(y / GRID_SIZE);
       hasPointer = true;
+      // Excite on the event too, so fast sweeps leave an unbroken trail.
+      excite(pointerCol, pointerRow);
     }
 
     function handlePointerLeave() {
       hasPointer = false;
-      target.x = width / 2;
-      target.y = height / 2;
     }
 
     resize();
     window.addEventListener("resize", resize);
-    window.addEventListener("pointermove", handlePointerMove);
-    window.addEventListener("pointerleave", handlePointerLeave);
 
     if (prefersReducedMotion) {
-      draw();
-    } else {
-      rafId = requestAnimationFrame(loop);
+      drawBase();
+      return () => {
+        window.removeEventListener("resize", resize);
+      };
     }
+
+    window.addEventListener("pointermove", handlePointerMove);
+    window.addEventListener("pointerleave", handlePointerLeave);
+    rafId = requestAnimationFrame(loop);
 
     return () => {
       window.removeEventListener("resize", resize);

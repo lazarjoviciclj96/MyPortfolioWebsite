@@ -18,9 +18,9 @@ export default function Referrals() {
         </p>
 
         <div className="mt-10 grid gap-6 md:grid-cols-2">
-          {referrals.map((ref) => (
+          {referrals.map((ref, i) => (
             <blockquote
-              key={ref.name}
+              key={i}
               className="rounded-lg border border-border bg-background-elevated p-6"
             >
               <p className="font-mono text-neon-soft">&ldquo;</p>

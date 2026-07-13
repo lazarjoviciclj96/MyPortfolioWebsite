@@ -30,12 +30,6 @@ export const hero = {
 export const about = {
   summary:
     "Manual and Automation QA Engineer passionate about shipping reliable software — combining manual testing, automation, and AI-assisted testing practices to catch bugs early, before they reach end users. I work best in small to medium-sized teams, specialize in SaaS products, and I'm a confident communicator who enjoys mentoring junior testers and bridging the gap between QA, engineering, and stakeholders.",
-  highlights: [
-    "Nearly 5 years testing web and mobile applications across manual and automation disciplines.",
-    "Automation with Playwright (C#, TypeScript, JavaScript) covering UI, API, and database testing.",
-    "Expanding into AI-augmented testing practices — ISTQB CT-GenAI (in progress).",
-    "ISTQB Foundation Level certified; strong communicator who bridges QA, dev, and stakeholders.",
-  ],
   experience: [
     {
       role: "QA Manual & Automation Engineer",
@@ -44,7 +38,7 @@ export const about = {
       location: "Remote",
       bullets: [
         "End-to-end manual (ATDD) and Playwright .NET automated testing for a production web platform, with zero critical regression escapes across 3 major releases.",
-        "Leveraged AI tools (Claude, GitHub Copilot) to accelerate Playwright script generation, reducing script authoring time by ~40% and freeing capacity for exploratory coverage.",
+        "Leveraged AI tools (Claude, GitHub Copilot) to accelerate Playwright script generation, reducing test authoring time by ~40% and freeing capacity for exploratory coverage.",
         "Drive STLC/SDLC test planning and execution in a fast-paced Agile team, delivering sprint-ready test cycles within tight release windows.",
         "Own defect lifecycle in Azure DevOps — from root cause analysis through resolution tracking — maintaining defect escape rate below 3%.",
         "Produce test progress, risk, and release readiness reports for technical and non-technical stakeholders, enabling data-driven go/no-go decisions.",
@@ -66,7 +60,7 @@ export const about = {
     },
     {
       role: "Quality Assurance Tester",
-      company: "Growthmilll",
+      company: "Growthmill",
       period: "Nov 2021 — Dec 2022",
       location: "Remote",
       bullets: [
@@ -156,7 +150,7 @@ export const projects = [
   },
   {
     title: "BDD Testing Foundation",
-    company: "Growthmilll",
+    company: "Growthmill",
     description:
       "Authored Gherkin-based test scenarios and cases from acceptance criteria, establishing a BDD testing foundation and running smoke/regression cycles across multiple concurrent projects.",
     tags: ["Gherkin", "BDD", "Jira"],

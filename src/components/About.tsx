@@ -11,14 +11,14 @@ export default function About() {
           // About Me
         </h2>
 
-        <div className="mt-6 flex flex-col gap-8 sm:flex-row sm:items-start">
-          <div className="relative mx-auto h-40 w-40 shrink-0 overflow-hidden rounded-full border border-neon-dim border-glow sm:mx-0">
+        <div className="mt-6 flex flex-col gap-8 sm:flex-row sm:items-center">
+          <div className="relative mx-auto h-[280px] w-[280px] shrink-0 overflow-hidden rounded-3xl border border-neon-dim border-glow sm:mx-0">
             <Image
               src={personal.headshot}
               alt={personal.name}
               fill
-              sizes="160px"
-              className="object-cover grayscale"
+              sizes="280px"
+              className="object-cover"
               priority
             />
           </div>
@@ -91,7 +91,7 @@ export default function About() {
               href={certificationsUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="rounded-md border border-neon bg-neon px-4 py-2 font-mono text-xs font-semibold text-background transition-colors hover:bg-neon-soft hover:border-neon-soft"
+              className="rounded-md border border-neon bg-neon px-4 py-2 font-mono text-xs font-semibold text-background transition-transform hover:scale-[1.03] hover:shadow-[0_0_24px_rgba(57,255,20,0.5)]"
             >
               View all on LinkedIn →
             </a>

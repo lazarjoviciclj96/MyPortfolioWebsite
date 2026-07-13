@@ -8,6 +8,7 @@ export const personal = {
   location: "Novi Sad, Vojvodina, Serbia",
   email: "lazarjoviciclj96@gmail.com",
   linkedin: "https://www.linkedin.com/in/lazarjovicic96/",
+  github: "https://github.com/lazarjoviciclj96",
   resumeUrl: "/resume.pdf",
   headshot: "/headshot.png",
 };

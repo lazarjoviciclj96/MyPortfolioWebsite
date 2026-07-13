@@ -1,4 +1,4 @@
-import { projects } from "@/data/profile";
+import { personal, projects } from "@/data/profile";
 
 export default function Projects() {
   return (
@@ -7,13 +7,26 @@ export default function Projects() {
       className="border-t border-border bg-background-elevated py-24"
     >
       <div className="mx-auto max-w-6xl px-6">
-        <h2 className="font-mono text-sm uppercase tracking-widest text-neon-soft">
-          // Projects
-        </h2>
-        <p className="mt-4 max-w-xl text-muted">
-          A few things I&apos;ve built and tested on the job — from automation
-          programs to the processes that keep releases predictable.
-        </p>
+        <div className="flex flex-wrap items-end justify-between gap-4">
+          <div>
+            <h2 className="font-mono text-sm uppercase tracking-widest text-neon-soft">
+              // Projects
+            </h2>
+            <p className="mt-4 max-w-xl text-muted">
+              A few things I&apos;ve built and tested on the job — from
+              automation programs to the processes that keep releases
+              predictable.
+            </p>
+          </div>
+          <a
+            href={personal.github}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="rounded-md border border-neon bg-neon px-4 py-2 font-mono text-xs font-semibold text-background transition-transform hover:scale-[1.03] hover:shadow-[0_0_24px_rgba(57,255,20,0.5)]"
+          >
+            View all on GitHub →
+          </a>
+        </div>
 
         <div className="mt-10 grid gap-6 md:grid-cols-3">
           {projects.map((project) => (

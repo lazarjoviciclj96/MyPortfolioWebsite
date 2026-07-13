@@ -79,16 +79,6 @@ export default function About() {
                 </ul>
               </li>
             ))}
-            {about.education.map((edu) => (
-              <li key={edu.degree} className="relative">
-                <span className="absolute -left-[27px] top-1.5 h-2 w-2 rounded-full bg-neon" />
-                <p className="font-mono text-xs text-neon-soft">Education</p>
-                <p className="mt-1 font-semibold text-foreground">
-                  {edu.degree}
-                </p>
-                <p className="text-sm text-muted">{edu.school}</p>
-              </li>
-            ))}
           </ol>
         </div>
 
@@ -127,6 +117,20 @@ export default function About() {
                     {cert.status}
                   </span>
                 </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className="mt-16">
+          <h3 className="font-mono text-xs uppercase tracking-widest text-muted">
+            Education
+          </h3>
+          <div className="mt-6 space-y-2">
+            {about.education.map((edu) => (
+              <div key={edu.degree}>
+                <p className="font-semibold text-foreground">{edu.degree}</p>
+                <p className="text-sm text-muted">{edu.school}</p>
               </div>
             ))}
           </div>

@@ -185,5 +185,5 @@ export const referrals = [
 export const contact = {
   heading: "Let's build something reliable.",
   subheading:
-    "Open to QA roles, contract testing work, or just talking shop about test strategy. Reach out any time.",
+    "Open to QA roles, full-time engagement or contract testing work. Reach out any time.",
 };

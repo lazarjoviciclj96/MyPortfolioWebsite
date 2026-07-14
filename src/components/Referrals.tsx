@@ -17,9 +17,6 @@ export default function Referrals() {
             <p className="mt-4 max-w-xl text-muted">
               What colleagues and managers have said about working with me.
             </p>
-            <p className="mt-2 font-mono text-xs text-muted/70">
-              Sample quotes — real recommendations coming soon.
-            </p>
           </div>
           <a
             href={recommendationsUrl}

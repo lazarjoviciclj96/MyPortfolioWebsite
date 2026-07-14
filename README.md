@@ -90,36 +90,3 @@ geometry pass. It:
 To adjust the look, tweak the constants at the top of the file:
 `GRID_SIZE` (spacing), `GLOW_RADIUS` (spotlight size), and the color
 constants.
-
-## Getting Started
-
-```bash
-npm install
-npm run dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) to view the site.
-
-Other scripts:
-
-```bash
-npm run build   # production build
-npm run start   # run the production build
-npm run lint    # lint the project
-```
-
-## Deployment
-
-This is a standard Next.js app — deploy it on [Vercel](https://vercel.com/new)
-(recommended, zero-config) or any Node hosting provider that supports
-`next build` / `next start`.
-
-## Roadmap / Next Steps
-
-- [x] Real LinkedIn/resume content in `src/data/profile.ts`
-- [x] Real headshot in the About section (`public/headshot.png`)
-- [x] Resume download button wired to `public/resume.pdf`
-- [ ] Replace the sample quotes in the Referrals section with real LinkedIn recommendations
-- [ ] Consider a functional contact form (e.g. Resend, EmailJS) instead of `mailto:`
-- [ ] Add OG image / favicon branding
-- [ ] Confirm/add a public GitHub profile link if you want one in Contact

@@ -11,6 +11,7 @@ export const personal = {
   email: "lazarjoviciclj96@gmail.com",
   linkedin: "https://www.linkedin.com/in/lazarjovicic96/",
   github: "https://github.com/lazarjoviciclj96?tab=repositories",
+  calendly: "https://calendly.com/lazarjoviciclj96",
   resumeUrl: "/resume.pdf",
   headshot: "/headshot.png",
 };
@@ -176,10 +177,10 @@ export const referrals = [
   },
   {
     quote:
-      "",
-    name: "",
-    title: ""
-  }
+      "Lazar is a very responsible and professional QA. He is thorough in testing, reliable in delivery, and always approaches tasks with great care. He quickly understands business requirements, communicates clearly, and significantly contributes to product quality. He is an excellent team player and someone you can rely on.",
+    name: "Milos Stojkovic",
+    title: "CTO",
+  },
 ];
 
 export const contact = {

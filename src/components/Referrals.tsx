@@ -34,8 +34,7 @@ export default function Referrals() {
               key={i}
               className="rounded-lg border border-border bg-background-elevated p-6"
             >
-              <p className="font-mono text-neon-soft">&ldquo;</p>
-              <p className="-mt-4 text-sm leading-relaxed text-foreground">
+              <p className="text-sm leading-relaxed text-foreground">
                 {ref.quote}
               </p>
               <footer className="mt-4 text-sm">

@@ -11,9 +11,6 @@ export default function Footer() {
           with Next.js
         </p>
         <p>&copy; {year} {personal.name}. All rights reserved.</p>
-        <a href="#top" className="font-mono text-xs hover:text-neon">
-          Back to top ↑
-        </a>
       </div>
     </footer>
   );

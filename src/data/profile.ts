@@ -1,8 +1,6 @@
 // Central content store for the site.
 // Sourced from Lazar's LinkedIn profile and resume — update here, not in components.
 
-import { title } from "process";
-
 export const personal = {
   name: "Lazar Jovičić",
   handle: "lazarjoviciclj96",
@@ -13,15 +11,14 @@ export const personal = {
   github: "https://github.com/lazarjoviciclj96?tab=repositories",
   calendly: "https://calendly.com/lazarjoviciclj96",
   resumeUrl: "/resume.pdf",
-  headshot: "/headshot.png",
+  headshot: "/headshot.webp",
 };
 
 export const hero = {
   eyebrow: "Open to work",
   headline: "Bugs are expensive.",
   headlineAccent: "I make sure you don't pay for them.",
-  subheadline:
-    "5 years preventing costly production incidents through sharp manual testing, Playwright automation, and AI-augmented workflows that cut testing time by ~40% - all while keeping the defect escape rate under 3%.",
+  subheadline: "I combine hands-on manual testing with AI-driven automation to validate software faster, with fewer surprises.",
   primaryCta: { label: "View projects", href: "#projects" },
   secondaryCta: { label: "Let's talk", href: "#contact" },
   stats: [
@@ -33,7 +30,7 @@ export const hero = {
 
 export const about = {
   summary:
-    "Manual and Automation QA Engineer passionate about shipping reliable software — combining manual testing, automation, and AI-assisted testing practices to catch bugs early, before they reach end users. I work best in small to medium-sized teams, specialize in SaaS products, and I'm a confident communicator who enjoys mentoring junior testers and bridging the gap between QA, engineering, and stakeholders.",
+    "Manual and Automation QA Engineer passionate about shipping reliable software - combining manual testing, automation, and AI-assisted testing practices to catch bugs early, before they reach end users. I work best in small to medium-sized teams, specialize in SaaS products, and I'm a confident communicator who enjoys mentoring junior testers and bridging the gap between QA, engineering, and stakeholders.",
   experience: [
     {
       role: "QA Manual & Automation Engineer",

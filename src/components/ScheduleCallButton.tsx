@@ -1,5 +1,6 @@
 "use client";
 
+import Button from "@/components/Button";
 import { personal } from "@/data/profile";
 
 declare global {
@@ -10,21 +11,29 @@ declare global {
   }
 }
 
-export default function ScheduleCallButton() {
+type ScheduleCallButtonProps = {
+  variant?: "primary" | "secondary";
+  size?: "md" | "sm";
+};
+
+export default function ScheduleCallButton({
+  variant = "primary",
+  size = "md",
+}: ScheduleCallButtonProps) {
   return (
-    <a
+    <Button
       href={personal.calendly}
-      target="_blank"
-      rel="noreferrer"
+      external
+      variant={variant}
+      size={size}
       onClick={(e) => {
         if (window.Calendly) {
           e.preventDefault();
           window.Calendly.initPopupWidget({ url: personal.calendly });
         }
       }}
-      className="rounded-md bg-neon px-6 py-3 font-mono text-sm font-semibold text-background transition-transform hover:scale-[1.03] hover:shadow-[0_0_24px_rgba(57,255,20,0.5)]"
     >
       Schedule a call
-    </a>
+    </Button>
   );
 }
